@@ -1,0 +1,19 @@
+---
+# tasks file for web_server
+
+- name: Install Python Flask
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - flask
+    - flask-mysql
+
+- name: Clone the web app application
+  git:
+    repo: https://github.com/mmumshad/simple-webapp-flask.git
+    clone: yes
+    dest: /home/ansible/ansible-project
+
+- name: Start the web server
+  shell: FLASK_APP=/home/ansible/ansible-project/app.py nohup flask run --host=0.0.0.0 &

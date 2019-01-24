@@ -1,0 +1,28 @@
+---
+# tasks file for db_server
+
+- name: Install MySQL Database
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - mysql-server
+    - mysql-client
+    - python-pymysql
+
+- name: Start MySQL Service
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+
+- name: Create Application Database
+  mysql_db: name=employee_db state=present login_unix_socket=/var/run/mysqld/mysqld.sock
+
+- name: Create Application DB User
+  mysql_user:
+    name: db_user
+    password: pass
+    priv: '*.*:ALL'
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock

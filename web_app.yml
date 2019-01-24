@@ -1,0 +1,17 @@
+---
+# This is a playbook for launching a web application
+
+- name: Install the python dependencies
+  hosts: all
+  roles:
+    - python_dependencies
+
+- name: Install mysql on db server
+  hosts: db_servers
+  roles:
+    - db_server
+
+- name: Install flask and the web app
+  hosts: web_servers
+  roles:
+    - web_server
