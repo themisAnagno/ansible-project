@@ -8,3 +8,4 @@ I created 3 roles: python-dependencies, web_servers and db_servers to complete t
 
 ## POC
 A screenshot of the web server's for testing that the web application is running
+![screenshot](https://github.com/themisAnagno/ansible-project/blob/master/Screenshot%202019-01-25%20at%2001.28.46.png)
